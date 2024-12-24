@@ -4,6 +4,7 @@ import RegisterAnimation from "../../assets/register.json";
 import Swal from "sweetalert2";
 import AuthContext from "../../context/AuthContext/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
+import SocialLogin from "../../Shared/SocialLogin";
 const Register = () => {
   const { createUser } = useContext(AuthContext);
 
@@ -75,6 +76,10 @@ const Register = () => {
                 <button className="btn btn-primary">Register</button>
               </div>
             </form>
+          
+            <div>
+                <SocialLogin/>
+            </div>
           </div>
         </div>
       </div>
