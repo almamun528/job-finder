@@ -4,3 +4,7 @@
 //   VITE_storageBucket=job-finder-a65eb.firebasestorage.app
 //   VITE_messagingSenderId=1081543705168
 //   VITE_appId=1:1081543705168:web:701190da66f97222698755
+
+
+
+// firebase key
