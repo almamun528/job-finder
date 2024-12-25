@@ -5,8 +5,15 @@ import LoginAnimation from '../../assets/login.json'
 import AuthContext from '../../context/AuthContext/AuthContext';
 import Swal from 'sweetalert2';
 import SocialLogin from '../../Shared/SocialLogin';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const location = useLocation()
+  const navigate = useNavigate()
+  console.log('location into sign in', location)
+  // this form is hold users location
+  const from = location.state || '/'
+
     const{userLogin}= useContext(AuthContext)
       const handleLogin = (e) => {
         e.preventDefault();
@@ -18,7 +25,11 @@ const Login = () => {
         userLogin(email, password)
         .then(result=>{
             console.log(result?.user)
-            toast.success('Welcome Back',' ', result?.user?.email)
+            toast.success('Welcome Back')
+            // this navigate brings his targeted route 
+            setTimeout(()=>{
+              navigate(from)
+            },1000)
         })
         .catch(error=>{
             console.log(error?.message)
