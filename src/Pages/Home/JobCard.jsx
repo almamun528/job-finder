@@ -8,7 +8,7 @@ const JobCard = ({ job }) => {
     salaryRange,
     location,
     company_logo,
-    company,
+    company, 
     requirements,
     description,
   } = job;
@@ -16,7 +16,7 @@ const JobCard = ({ job }) => {
     <>
       <div className="card bg-base-100 shadow-xl mt-36">
         <figure>
-          <img src={company_logo} alt="Shoes" />
+          <img className="w-40" src={company_logo} alt="Shoes" />
         </figure>
         <div className="flex mt-2 items-center justify-center gap-2">
           <p>
@@ -45,7 +45,7 @@ const JobCard = ({ job }) => {
               {salaryRange.currency}{" "}
             </p>
             <Link className="my-4" to={`jobs/${_id}`}>
-              <button className="btn btn-primary">Apply</button>
+              <button className="btn btn-primary">Details</button>
             </Link>
           </div>
         </div>

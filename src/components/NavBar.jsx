@@ -14,18 +14,22 @@ const handleLogOut =()=>{
         console.log(error?.message)
     })
 }
-    const links = <>
-    <li>  
-        <Link to='/'>Home</Link>
-    </li>
-    <li>  
-        <Link to='/'>Home</Link>
-    </li>
-    <li>  
-        <Link to='/'>Home</Link>
-    </li>
-    
-    </>
+    const links = (
+      <>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/myApplications">My Applications</Link>
+        </li>
+        <li>
+          <Link to="/addJob">Add Job</Link>
+        </li>
+        <li>
+          <Link to="/myPostedJobs">My Posted Jobs</Link>
+        </li>
+      </>
+    );
     return (
       <>
         <div className="navbar bg-base-100">

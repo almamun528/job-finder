@@ -1,11 +1,11 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../CustomHooks/useAuth";
 import { ToastContainer, toast } from "react-toastify";
 
 const JobApply = () => {
   const { id } = useParams();
-  console.log(id);
+  const navigate = useNavigate();
   const { user } = useAuth();
   console.log(user, " user is login");
   const submitApplication = (e) => {
@@ -34,11 +34,15 @@ const JobApply = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
-        if(data.insertedId){
-        toast.success("Thanks for Applying who you will get back to you")}
-    });
- 
+        console.log(data);
+        if (data.insertedId) {
+          toast.success("Thanks for Applying who you will get back to you");
+          setTimeout(()=>{
+            navigate("/myApplications")
+          },500)
+        }
+      });
+
     console.log("job application data  ", jobApplication);
     form.reset();
   };
@@ -47,7 +51,7 @@ const JobApply = () => {
     <>
       <h1 className="text-2xl text-center font-bold">Apply Your Job</h1>
       <section>
-        <ToastContainer/>
+        <ToastContainer />
         <form onSubmit={submitApplication} className="card-body">
           <div className="form-control">
             <label className="label">
