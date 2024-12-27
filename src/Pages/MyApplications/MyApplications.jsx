@@ -1,51 +1,52 @@
-import React, { useEffect, useState } from 'react';
-import useAuth from '../../CustomHooks/useAuth';
+import React, { useEffect, useState } from "react";
+import useAuth from "../../CustomHooks/useAuth";
+import axios from "axios";
 
 const MyApplications = () => {
-    const {user} = useAuth()
-    const [jobs, setJobs]= useState()
-    useEffect(()=>{
-        fetch(`http://localhost:3000/job_application?${user?.email}`)
+  const { user } = useAuth();
+  const [jobs, setJobs] = useState();
+  useEffect(() => {
+    // fetch(`http://localhost:3000/job_application?${user?.email}`)
+    // .then(res => res.json())
+    // .then(data =>{setJobs(data)})
+    axios.post(`http://localhost:3000/job_application?${user?.email}`)
+    .then(res=> setJobs(res.data))
+  }, [user.email]);
+  return (
+    <>
+      <h2 className="text-5xl">My Applications {jobs?.length} </h2>
 
-        .then(res => res.json())
-        .then(data =>{
-            setJobs(data)
-           
-            
-        })
-    },[user.email])
-    return (
-      <>
-        <h2 className="text-5xl">My Applications {jobs?.length} </h2>
+      <div className="overflow-x-auto mt-3">
+        <table className="table table-zebra">
+          {/* head */}
+          <thead>
+            <tr>
+              <th></th>
+              <th>Job Title</th>
+              <th>Company</th>
+              <th>Location</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* row 1 */}
 
-        <div className="overflow-x-auto mt-3">
-          <table className="table table-zebra">
-            {/* head */}
-            <thead>
-              <tr>
-                <th></th>
-                <th>Job Title</th>
-                <th>Company</th>
-                <th>Location</th>
-              </tr>
-            </thead>
-            <tbody>
-              {/* row 1 */}
-
-              {jobs &&
-                jobs?.map((job, index) => (
-                  <tr key={job._id}>
-                    <th>{index + 1}</th>
-                    <td>{job.title}</td>
-                    <td>   <img className='w-12' src={job.company_logo} alt="" /> </td>
-                    <td>   {job.location} </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-        </div>
-      </>
-    );
+            {jobs &&
+              jobs?.map((job, index) => (
+                <tr key={job._id}>
+                  <th>{index + 1}</th>
+                  <td>{job.title}</td>
+                  <td>
+                    {" "}
+                    <img className="w-12" src={job.company_logo} alt="" />{" "}
+                  </td>
+                  <td> {job.location} </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
 };
 
 export default MyApplications;

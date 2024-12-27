@@ -6,6 +6,7 @@ import AuthContext from '../../context/AuthContext/AuthContext';
 import Swal from 'sweetalert2';
 import SocialLogin from '../../Shared/SocialLogin';
 import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Login = () => {
   const location = useLocation()
@@ -23,9 +24,14 @@ const Login = () => {
         // User login function
         userLogin(email, password)
         .then(result=>{
-            console.log(result?.user)
             toast.success('Welcome Back')
             // this navigate brings his targeted route 
+            console.log('User Login ', result?.user?.email)
+            const user={email:email}
+           axios.post('http://localhost:3000/',user,{withCredentials:true})
+           .then(res=> console.log(res.data))
+            
+
             setTimeout(()=>{
               navigate(from)
             },1000)
