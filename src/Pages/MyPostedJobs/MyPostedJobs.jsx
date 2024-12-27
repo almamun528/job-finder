@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../CustomHooks/useAuth';
+import { Link } from 'react-router-dom';
 
 const MyPostedJobs = () => {
     const [jobs, setJobs]= useState([])
@@ -9,7 +10,6 @@ const {user}= useAuth()
         fetch(`http://localhost:3000/jobs?email=${user.email}`)
         .then(res=> res.json())
         .then(data=>{
-            console.log(data)
             setJobs(data)
         })
     },[user.email])
@@ -29,6 +29,7 @@ const {user}= useAuth()
                 <th>Deadline</th>
                 <th>Company</th>
                 <th>Total Application</th>
+                <th>View Applications</th>
               </tr>
             </thead>
             <tbody>
@@ -40,7 +41,12 @@ const {user}= useAuth()
                     <td> {job.title} </td>
                     <td>{job.applicationDeadline}</td>
                     <td>{job.company}</td>
-                    <td>20</td>
+                    <td> {job.application} </td>
+                    <td>
+                      <Link to={`/VewApplications/${job._id}`}>
+                        <button className="btn btn-link"> view</button>
+                      </Link>{" "}
+                    </td>
                   </tr>
                 ))}
             </tbody>

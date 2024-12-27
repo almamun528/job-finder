@@ -7,7 +7,6 @@ const JobApply = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { user } = useAuth();
-  console.log(user, " user is login");
   const submitApplication = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -15,7 +14,6 @@ const JobApply = () => {
     const github = form.github.value;
     const cv = form.cv.value;
 
-    // console.log('Linkedin url ',linkedin, ' github ', github, ' cv ', cv)
     const jobApplication = {
       job_id: id,
       applicant: user.email,
@@ -34,7 +32,7 @@ const JobApply = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        
         if (data.insertedId) {
           toast.success("Thanks for Applying who you will get back to you");
           setTimeout(()=>{
@@ -42,8 +40,6 @@ const JobApply = () => {
           },500)
         }
       });
-
-    console.log("job application data  ", jobApplication);
     form.reset();
   };
 

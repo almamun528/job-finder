@@ -9,8 +9,6 @@ const AddJobs = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const initialData = Object.fromEntries(formData.entries());
-    // console.log(initialData,'initial data is here to see ')
-
     const { min, max, currency, ...newJob } = initialData;
 
     newJob.salaryRange = { min, max, currency };
@@ -32,7 +30,6 @@ fetch("http://localhost:3000/jobs",{
     setTimeout(()=>{
         navigate("/myPostedJobs");
     },900)
-    console.log(data);
   });
 
 

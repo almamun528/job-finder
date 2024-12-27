@@ -11,7 +11,7 @@ const MyApplications = () => {
         .then(data =>{
             setJobs(data)
            
-            console.log(data, ' data are here ')
+            
         })
     },[user.email])
     return (

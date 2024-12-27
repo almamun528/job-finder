@@ -9,6 +9,7 @@ import JobApply from "../Pages/JobApply/JobApply";
 import MyApplications from "../Pages/MyApplications/MyApplications";
 import AddJobs from "../Pages/AddJobs/AddJobs";
 import MyPostedJobs from "../Pages/MyPostedJobs/MyPostedJobs";
+import VewApplications from "../Pages/VewApplications/VewApplications";
 
 const router = createBrowserRouter([
   {
@@ -44,23 +45,39 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: 'myApplications', 
-        element: <PrivateRoute>
-          <MyApplications/>
-        </PrivateRoute>
+        path: "myApplications",
+        element: (
+          <PrivateRoute>
+            <MyApplications />
+          </PrivateRoute>
+        ),
       },
       {
-        path:'addJob',
-        element: <PrivateRoute>
-          <AddJobs/>
-        </PrivateRoute>,
+        path: "addJob",
+        element: (
+          <PrivateRoute>
+            <AddJobs />
+          </PrivateRoute>
+        ),
       },
       {
-        path:'myPostedJobs',
-        element: <PrivateRoute>
-          <MyPostedJobs/>
-        </PrivateRoute>
-      }
+        path: "myPostedJobs",
+        element: (
+          <PrivateRoute>
+            <MyPostedJobs />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "VewApplications/:job_id",
+        element: (
+          <PrivateRoute>
+            <VewApplications />
+          </PrivateRoute>
+        ),
+        loader: (params) =>
+          fetch(`http://localhost:3000/job_applications/job/${params.job_id}`),
+      },
     ],
   },
 ]);

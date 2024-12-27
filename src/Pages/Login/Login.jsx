@@ -10,7 +10,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const Login = () => {
   const location = useLocation()
   const navigate = useNavigate()
-  console.log('location into sign in', location)
   // this form is hold users location
   const from = location.state || '/'
 
@@ -39,7 +38,6 @@ const Login = () => {
             text: "User Id And Password Is Not Matching!",
           });
         })
-        console.log(email, password, "Login SuccessFul");
       };
     return (
       <>
